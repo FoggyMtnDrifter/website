@@ -1,6 +1,12 @@
 ---
 layout: '~/layouts/MarkdownLayout.astro'
-title: About Me
+title: 'Linux Wrangler. Mountain Drifter.'
 ---
 
-The laughing kookaburra (Dacelo novaeguineae) is a bird in the kingfisher subfamily Halcyoninae. It is a large robust kingfisher with a whitish head and a brown eye-stripe. The upperparts are mostly dark brown but there is a mottled light-blue patch on the wing coverts. The underparts are cream-white and the tail is barred with rufous and black. The plumage of the male and female birds is similar. The territorial call is a distinctive laugh that is often delivered by several birds at the same time, and is widely used as a stock sound effect in situations that involve a jungle setting.
+I've been drawn to technology and problem-solving for as long as I can remember.
+
+My passion for open source has been a driving force throughout my career. I currently serve as the Design Team Lead for Rocky Linux, where I collaborate with a community of talented developers dedicated to creating a robust, community-driven enterprise Linux distribution.
+
+When I'm not immersed in code or troubleshooting systems, you'll find me exploring the natural beauty around Pikeville, Kentucky. I cherish time spent hiking through the mountains and observing wildlife in their natural habitats.
+
+I'm also constantly tinkering with new projects; building and programming solutions to automate tasks and make life more efficient. There's something deeply satisfying about creating tools that solve real problems, whether it's for work or just to simplify day-to-day activities at home.
