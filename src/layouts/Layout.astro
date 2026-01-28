@@ -7,6 +7,7 @@ import SelectThemeLoader from '~/components/SelectThemeLoader.astro'
 import siteConfig from '~/site.config'
 import { pick, resolveThemeColorStyles } from '~/utils'
 import crypto from 'crypto'
+import BuyMeACoffeeModal from '~/components/BuyMeACoffeeModal.astro'
 
 interface Props {
   title?: string
@@ -153,17 +154,6 @@ let generatedCss: string = cssLines.join('\n')
     <style is:inline set:html={generatedCss}></style>
     {themeMode === 'light-dark-auto' && <LightDarkAutoThemeLoader />}
     {themeMode === 'select' && <SelectThemeLoader />}
-
-    <script
-      data-name="BMC-Widget"
-      data-cfasync="false"
-      src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js"
-      data-id="foggymtndrifter"
-      data-description="Support me on Buy me a coffee!"
-      data-color="#BD5FFF"
-      data-position="Right"
-      data-x_margin="18"
-      data-y_margin="18"></script>
   </head>
   <body class="w-full h-full m-0 bg-background text-foreground">
     <div
@@ -175,5 +165,6 @@ let generatedCss: string = cssLines.join('\n')
       </main>
       <Footer />
     </div>
+    <BuyMeACoffeeModal />
   </body>
 </html>

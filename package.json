@@ -14,9 +14,11 @@
   "dependencies": {
     "@astrojs/markdown-remark": "^6.3.6",
     "@astrojs/mdx": "^4.3.4",
+    "@astrojs/node": "^9.5.2",
     "@astrojs/rss": "^4.0.12",
     "@astrojs/sitemap": "^3.5.1",
     "@astrojs/ts-plugin": "^1.10.4",
+    "@astrojs/vercel": "^9.0.4",
     "@expo-google-fonts/jetbrains-mono": "^0.4.0",
     "@expressive-code/plugin-line-numbers": "^0.41.3",
     "@fontsource-variable/jetbrains-mono": "^5.2.6",
@@ -48,6 +50,7 @@
     "sanitize-html": "^2.17.0",
     "satori": "^0.18.2",
     "satori-html": "^0.3.2",
+    "stripe": "^20.2.0",
     "tailwindcss": "^4.1.13",
     "typescript": "^5.9.2",
     "unified": "^11.0.5"

@@ -1,0 +1,247 @@
+---
+
+---
+
+<dialog
+  id="bmc-modal"
+  class="backdrop:bg-black/50 bg-background border-2 border-accent/20 rounded-xl p-0 w-[90%] max-w-md shadow-2xl transition-all duration-300 open:animate-fade-in text-foreground m-auto"
+>
+  <div class="relative overflow-hidden">
+    <!-- Header -->
+    <div class="bg-accent/10 p-6 text-center border-b border-accent/10">
+      <h2
+        class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-accent to-accent/70"
+      >
+        Buy me a coffee
+      </h2>
+      <p class="text-sm text-foreground/70 mt-2">
+        If you found this helpful, consider supporting my work!
+      </p>
+      <button
+        id="bmc-close"
+        class="absolute top-4 right-4 text-foreground/50 hover:text-foreground transition-colors cursor-pointer"
+        aria-label="Close modal"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Body -->
+    <div class="p-6">
+      <form action="/api/checkout" method="POST" id="bmc-form">
+        <div class="grid grid-cols-3 gap-3 mb-6">
+          <label class="cursor-pointer relative">
+            <input
+              type="radio"
+              name="amount-selection"
+              value="5"
+              class="peer sr-only"
+              checked
+            />
+            <div
+              class="h-12 flex items-center justify-center rounded-lg border-2 border-accent/20 peer-checked:border-accent peer-checked:bg-accent/10 hover:border-accent/50 transition-all font-bold"
+            >
+              $5
+            </div>
+          </label>
+          <label class="cursor-pointer relative">
+            <input type="radio" name="amount-selection" value="10" class="peer sr-only" />
+            <div
+              class="h-12 flex items-center justify-center rounded-lg border-2 border-accent/20 peer-checked:border-accent peer-checked:bg-accent/10 hover:border-accent/50 transition-all font-bold"
+            >
+              $10
+            </div>
+          </label>
+          <label class="cursor-pointer relative">
+            <input type="radio" name="amount-selection" value="20" class="peer sr-only" />
+            <div
+              class="h-12 flex items-center justify-center rounded-lg border-2 border-accent/20 peer-checked:border-accent peer-checked:bg-accent/10 hover:border-accent/50 transition-all font-bold"
+            >
+              $20
+            </div>
+          </label>
+        </div>
+
+        <div class="mb-6">
+          <label class="block text-sm font-medium mb-2 text-foreground/80"
+            >Custom Amount (USD)</label
+          >
+          <div class="relative">
+            <span class="absolute left-3 top-1/2 -translate-y-1/2 text-foreground/50"
+              >$</span
+            >
+            <input
+              type="number"
+              name="custom-amount"
+              step="0.50"
+              min="1"
+              placeholder="Other amount"
+              class="w-full bg-background border-2 border-accent/20 rounded-lg py-2 pl-8 pr-4 focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent transition-all"
+            />
+          </div>
+        </div>
+
+        <input type="hidden" name="amount" id="final-amount" value="5" />
+        <input type="hidden" name="isCustom" id="is-custom" value="false" />
+
+        <button
+          type="submit"
+          class="w-full bg-accent hover:bg-accent/90 text-background font-bold py-3 px-6 rounded-lg transition-all transform active:scale-95 flex items-center justify-center gap-2"
+        >
+          Enjoy your coffee!
+        </button>
+      </form>
+
+      <p class="text-xs text-center text-foreground/40 mt-4">
+        Secure payment processed by Stripe
+      </p>
+    </div>
+  </div>
+</dialog>
+
+<script>
+  const dialog = document.getElementById('bmc-modal') as HTMLDialogElement
+  const closeBtn = document.getElementById('bmc-close')
+  const form = document.getElementById('bmc-form') as HTMLFormElement
+  const amountRadios = document.querySelectorAll('input[name="amount-selection"]')
+  const customInput = document.querySelector(
+    'input[name="custom-amount"]',
+  ) as HTMLInputElement
+  const finalAmountInput = document.getElementById('final-amount') as HTMLInputElement
+  const isCustomInput = document.getElementById('is-custom') as HTMLInputElement
+
+  // Open modal triggers
+  document.addEventListener('click', (e) => {
+    const target = e.target as HTMLElement
+    const trigger = target.closest('.bmc-trigger')
+    if (trigger) {
+      e.preventDefault()
+      dialog.showModal()
+    }
+  })
+
+  // Close modal
+  closeBtn?.addEventListener('click', () => dialog.close())
+  dialog.addEventListener('click', (e) => {
+    const rect = dialog.getBoundingClientRect()
+    const isInDialog =
+      rect.top <= e.clientY &&
+      e.clientY <= rect.top + rect.height &&
+      rect.left <= e.clientX &&
+      e.clientX <= rect.left + rect.width
+    if (!isInDialog) {
+      dialog.close()
+    }
+  })
+
+  // Handle amount selection
+  const updateAmount = () => {
+    const customVal = customInput.value
+    if (customVal && parseFloat(customVal) > 0) {
+      // Use custom amount
+      finalAmountInput.value = customVal
+      isCustomInput.value = 'true'
+      // Uncheck radios visually (optional, depending on UX preference)
+      amountRadios.forEach((r) => ((r as HTMLInputElement).checked = false))
+    } else {
+      // Use selected radio
+      const selected = document.querySelector(
+        'input[name="amount-selection"]:checked',
+      ) as HTMLInputElement
+      if (selected) {
+        finalAmountInput.value = selected.value
+        isCustomInput.value = 'false'
+      }
+    }
+  }
+
+  amountRadios.forEach((radio) => {
+    radio.addEventListener('change', () => {
+      customInput.value = '' // Clear custom input when radio is selected
+      updateAmount()
+    })
+  })
+
+  customInput.addEventListener('input', updateAmount)
+
+  // Initialize
+  updateAmount()
+
+  // Handle form submission
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault()
+
+    // Disable button or show loading state
+    const submitBtn = form.querySelector('button[type="submit"]') as HTMLButtonElement
+    const originalText = submitBtn.innerText
+    submitBtn.innerText = 'Redirecting...'
+    submitBtn.disabled = true
+
+    try {
+      const response = await fetch('/api/checkout', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          amount: finalAmountInput.value,
+          isCustom: isCustomInput.value === 'true',
+        }),
+      })
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}))
+        throw new Error(errorData.error || 'Network response was not ok')
+      }
+
+      const data = await response.json()
+      if (data.url) {
+        window.location.href = data.url
+      } else {
+        alert('Something went wrong. Please try again.')
+        submitBtn.innerText = originalText
+        submitBtn.disabled = false
+      }
+    } catch (error) {
+      console.error('Error:', error)
+      alert(`Failed to initiate checkout: ${(error as Error).message}`)
+      submitBtn.innerText = originalText
+      submitBtn.disabled = false
+    }
+  })
+</script>
+
+<style>
+  dialog::backdrop {
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(2px);
+  }
+
+  dialog[open] {
+    animation: zoom-in 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  @keyframes zoom-in {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+</style>
