@@ -1,0 +1,356 @@
+---
+import Layout from '~/layouts/Layout.astro'
+import { Image } from 'astro:assets'
+import myAvatar from '../content/avatar.jpeg'
+import siteConfig from '~/site.config'
+
+import IconEmail from '~/icons/email.svg'
+import IconGithub from '~/icons/github.svg'
+
+const title = 'About Michael Kinder'
+const description = 'Professional experience and skills of Michael Kinder.'
+---
+
+<Layout title={title} description={description}>
+  <div class="max-w-3xl mx-auto py-8">
+    <!-- Header Section -->
+    <section
+      class="mb-12 flex flex-col sm:flex-row items-center sm:items-start gap-8 border-b-2 border-accent/20 pb-8"
+    >
+      <div class="shrink-0">
+        <Image
+          src={myAvatar}
+          alt="Michael Kinder"
+          class="rounded-full w-32 h-32 border-4 border-accent object-cover shadow-lg"
+        />
+      </div>
+
+      <div class="text-center sm:text-left">
+        <h1 class="text-4xl font-bold text-heading1 mb-2">Michael Kinder</h1>
+        <p class="text-xl text-heading2 italic mb-4">Technical Leader</p>
+
+        <div
+          class="flex flex-wrap justify-center sm:justify-start gap-4 text-sm text-foreground/80"
+        >
+          <span class="flex items-center gap-1">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-map-pin"
+              ><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle
+                cx="12"
+                cy="10"
+                r="3"></circle></svg
+            >
+            Pikeville, Kentucky
+          </span>
+          {
+            siteConfig.socialLinks.email && (
+              <span class="flex items-center gap-1">
+                <IconEmail class="size-4" />
+                <a
+                  href={`mailto:${siteConfig.socialLinks.email}`}
+                  class="hover:text-accent disabled-link transition-colors"
+                >
+                  {siteConfig.socialLinks.email.replace('mailto:', '')}
+                </a>
+              </span>
+            )
+          }
+          {
+            siteConfig.socialLinks.github && (
+              <span class="flex items-center gap-1">
+                <IconGithub class="size-4" />
+                <a
+                  href={siteConfig.socialLinks.github}
+                  target="_blank"
+                  class="hover:text-accent transition-colors"
+                >
+                  GitHub
+                </a>
+              </span>
+            )
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- Summary Section -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-heading2 mb-4 flex items-center gap-2">
+        <span class="text-accent">#</span> Summary
+      </h2>
+      <p class="leading-relaxed text-foreground/90">
+        Located in Pikeville, KY, I am a Technical Support professional with hands-on
+        experience providing remote end-user support, troubleshooting hardware and
+        software issues, and leading technical support teams in fast-paced hosting and
+        services environments.
+      </p>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-heading2 mb-6 flex items-center gap-2">
+        <span class="text-accent">#</span> Experience
+      </h2>
+
+      <div class="relative border-l-2 border-accent/20 ml-3 pl-8 pb-8 space-y-8">
+        {/* Experience Item 1 */}
+        <div class="relative">
+          <span
+            class="absolute -left-[43px] top-1 h-5 w-5 rounded-full border-4 border-background bg-accent"
+          ></span>
+          <h3 class="text-xl font-bold text-heading3">Technical Support Team Lead</h3>
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-accent font-semibold">hosting.com</span>
+            <span class="text-sm text-foreground/60 bg-foreground/5 px-2 py-0.5 rounded"
+              >Mar 2023 - Dec 2025</span
+            >
+          </div>
+          <ul
+            class="list-disc list-outside ml-5 space-y-1 text-foreground/80 marker:text-accent"
+          >
+            <li>
+              Led a team of 32 employees, providing guidance and support to ensure
+              successful completion of projects.
+            </li>
+            <li>
+              Implemented effective communication strategies to foster collaboration and
+              improve team productivity.
+            </li>
+            <li>
+              Developed and implemented training programs for new team members, resulting
+              in reduced onboarding time.
+            </li>
+            <li>
+              Monitored team performance and provided regular feedback to drive continous
+              improvement.
+            </li>
+            <li>
+              Collaborated with cross-functional teams to identify process improvements
+              and implement best practices.
+            </li>
+          </ul>
+        </div>
+
+        {/* Experience Item 2 (Inferred/Generic based on "career") */}
+        <div class="relative">
+          <span
+            class="absolute -left-[43px] top-1 h-5 w-5 rounded-full border-4 border-background bg-background"
+          >
+            <span class="block h-full w-full rounded-full bg-accent/50"></span>
+          </span>
+          <h3 class="text-xl font-bold text-heading3">Technical Support Specialist</h3>
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-accent font-semibold">InMotion Hosting</span>
+            <span class="text-sm text-foreground/60 bg-foreground/5 px-2 py-0.5 rounded"
+              >Feb 2022 - Feb 2023</span
+            >
+          </div>
+          <ul
+            class="list-disc list-outside ml-5 space-y-1 text-foreground/80 marker:text-accent"
+          >
+            <li>
+              Provided technical support to end-users and troubleshooting hardware and
+              software issues.
+            </li>
+            <li>
+              Resolved 95% of customer inquiries on the first call and exceeding
+              departmental targets.
+            </li>
+            <li>
+              Collaborated with cross-functional teams to identify and resolve complex
+              technical problems.
+            </li>
+            <li>
+              Documented all support interactions accurately and thoroughly in the
+              ticketing system.
+            </li>
+            <li>
+              Performed remote troubleshooting through diagnostic techniques and pertinent
+              questions.
+            </li>
+          </ul>
+        </div>
+
+        <div class="relative">
+          <span
+            class="absolute -left-[43px] top-1 h-5 w-5 rounded-full border-4 border-background bg-background"
+          >
+            <span class="block h-full w-full rounded-full bg-accent/50"></span>
+          </span>
+          <h3 class="text-xl font-bold text-heading3">Data Services Expert</h3>
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-accent font-semibold">Intuit</span>
+            <span class="text-sm text-foreground/60 bg-foreground/5 px-2 py-0.5 rounded"
+              >Sep 2018 - May 2021</span
+            >
+          </div>
+          <ul
+            class="list-disc list-outside ml-5 space-y-1 text-foreground/80 marker:text-accent"
+          >
+            <li>
+              Repaired and restored QuickBooks databases, ensuring data integrity, and
+              minimizing downtime for small business users.
+            </li>
+            <li>
+              Utilized SQL for data analysis, troubleshooting, and custom Query
+              development to resolve complex data-related issues.
+            </li>
+            <li>
+              Leveraged Splunk to investigate service anomalies, identify root causes, and
+              support resolution workflows.
+            </li>
+            <li>
+              Interpreted large datasets to diagnose problems, implement fixes, and
+              deliver accurate and timely support solutions.
+            </li>
+            <li>
+              Maintained a strong focus on data privacy and customer satisfaction in a
+              high-volume and customercentric environment.
+            </li>
+          </ul>
+        </div>
+
+        <div class="relative">
+          <span
+            class="absolute -left-[43px] top-1 h-5 w-5 rounded-full border-4 border-background bg-background"
+          >
+            <span class="block h-full w-full rounded-full bg-accent/50"></span>
+          </span>
+          <h3 class="text-xl font-bold text-heading3">Tier 2 AppleCare Advisor</h3>
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-accent font-semibold">Apple</span>
+            <span class="text-sm text-foreground/60 bg-foreground/5 px-2 py-0.5 rounded"
+              >Apr 2018 - Sep 2018</span
+            >
+          </div>
+          <ul
+            class="list-disc list-outside ml-5 space-y-1 text-foreground/80 marker:text-accent"
+          >
+            <li>
+              Provided technical support to customers via phone, email, chat, and resolved
+              95% of issues on the first contact.
+            </li>
+            <li>
+              Collaborated with Tier 1 support team to escalate complex issues and ensure
+              timely resolution.
+            </li>
+            <li>
+              Troubleshot hardware and software problems for a wide range of products
+              including computers, printers, routers, and mobile devices.
+            </li>
+            <li>
+              Demonstrated expertise in troubleshooting network connectivity issues by
+              analyzing logs and conducting remote diagnostics.
+            </li>
+            <li>
+              Assisted customers in configuring software applications and resolving
+              compatibility issues.
+            </li>
+          </ul>
+        </div>
+
+        <div class="relative">
+          <span
+            class="absolute -left-[43px] top-1 h-5 w-5 rounded-full border-4 border-background bg-background"
+          >
+            <span class="block h-full w-full rounded-full bg-accent/50"></span>
+          </span>
+          <h3 class="text-xl font-bold text-heading3">Assistant Store Manager</h3>
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-accent font-semibold">Family Dollar</span>
+            <span class="text-sm text-foreground/60 bg-foreground/5 px-2 py-0.5 rounded"
+              >May 2017 - May 2018</span
+            >
+          </div>
+          <ul
+            class="list-disc list-outside ml-5 space-y-1 text-foreground/80 marker:text-accent"
+          >
+            <li>
+              Assisted store manager in overseeing daily operations including inventory
+              management, staff scheduling, and customer service.
+            </li>
+            <li>
+              Trained and mentored new employees on company policies, procedures, and
+              customer service standards.
+            </li>
+            <li>
+              Collaborated with the store manager to develop and implement effective
+              merchandising displays to drive sales.
+            </li>
+            <li>
+              Managed cash handling procedures and ensured accuracy and compliance with
+              company guidelines.
+            </li>
+            <li>
+              Resolved customer complaints or concerns promptly and effectively, to
+              maintain high levels of customer satisfaction.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-heading2 mb-6 flex items-center gap-2">
+        <span class="text-accent">#</span> Skills
+      </h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-foreground/5 p-4 rounded-xl border border-foreground/10">
+          <h3 class="font-bold text-heading4 mb-3 border-b border-foreground/10 pb-2">
+            Technical
+          </h3>
+          <div class="flex flex-wrap gap-3 text-sm">
+            {
+              [
+                'Computer Science',
+                'Problem-Solving',
+                'e-Commerce',
+                'Linux',
+                'Computer Operation',
+                'Analysis Skills',
+                'Typing',
+              ].map((skill) => (
+                <span class="py-1 px-3 bg-accent/1 hover:bg-accent/8 border border-accent/20 text-accent/90 rounded-2xl transition-colors cursor-default">
+                  {skill}
+                </span>
+              ))
+            }
+          </div>
+        </div>
+
+        <div class="bg-foreground/5 p-4 rounded-xl border border-foreground/10">
+          <h3 class="font-bold text-heading4 mb-3 border-b border-foreground/10 pb-2">
+            General
+          </h3>
+          <div class="flex flex-wrap gap-3 text-sm">
+            {
+              [
+                'Customer Service',
+                'Leadership',
+                'Team Training',
+                'Teamwork',
+                'Time Management',
+                'Communication Skills',
+              ].map((skill) => (
+                <span class="py-1 px-3 bg-accent/1 hover:bg-accent/8 border border-accent/20 text-accent/90 rounded-2xl transition-colors cursor-default">
+                  {skill}
+                </span>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</Layout>
