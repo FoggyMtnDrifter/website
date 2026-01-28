@@ -5,6 +5,7 @@ import myAvatar from '../content/avatar.jpeg'
 import siteConfig from '~/site.config'
 
 import IconEmail from '~/icons/email.svg'
+import BlockHeader from '~/components/BlockHeader.astro'
 
 const title = 'About Michael Kinder'
 const description = 'Professional experience and skills of Michael Kinder.'
@@ -54,10 +55,7 @@ const description = 'Professional experience and skills of Michael Kinder.'
             siteConfig.socialLinks.email && (
               <span class="flex items-center gap-1">
                 <IconEmail class="size-4" />
-                <a
-                  href={`mailto:${siteConfig.socialLinks.email}`}
-                  class="hover:text-accent disabled-link transition-colors"
-                >
+                <a href={`mailto:${siteConfig.socialLinks.email}`} class="disabled-link">
                   {siteConfig.socialLinks.email.replace('mailto:', '')}
                 </a>
               </span>
@@ -69,10 +67,8 @@ const description = 'Professional experience and skills of Michael Kinder.'
 
     <!-- Summary Section -->
     <section class="mb-12">
-      <h2 class="text-2xl font-bold text-heading2 mb-4 flex items-center gap-2">
-        <span class="text-accent">#</span> Summary
-      </h2>
-      <p class="leading-relaxed text-foreground/90">
+      <BlockHeader>Summary</BlockHeader>
+      <p class="leading-relaxed text-foreground/90 my-5">
         Located in Pikeville, KY, I am a Technical Support professional with hands-on
         experience providing remote end-user support, troubleshooting hardware and
         software issues, and leading technical support teams in fast-paced hosting and
@@ -82,11 +78,9 @@ const description = 'Professional experience and skills of Michael Kinder.'
 
     <!-- Experience Section -->
     <section class="mb-12">
-      <h2 class="text-2xl font-bold text-heading2 mb-6 flex items-center gap-2">
-        <span class="text-accent">#</span> Experience
-      </h2>
+      <BlockHeader>Experience</BlockHeader>
 
-      <div class="relative border-l-2 border-accent/20 ml-3 pl-8 pb-8 space-y-8">
+      <div class="relative border-l-2 border-accent/20 ml-3 pl-8 pb-8 space-y-8 my-5">
         {/* Experience Item 1 */}
         <div class="relative">
           <span
@@ -286,13 +280,11 @@ const description = 'Professional experience and skills of Michael Kinder.'
 
     <!-- Skills Section -->
     <section class="mb-12">
-      <h2 class="text-2xl font-bold text-heading2 mb-6 flex items-center gap-2">
-        <span class="text-accent">#</span> Skills
-      </h2>
+      <BlockHeader>Skills</BlockHeader>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div class="bg-foreground/5 p-4 rounded-xl border border-foreground/10">
-          <h3 class="font-bold text-heading4 mb-3 border-b border-foreground/10 pb-2">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-5">
+        <div class="bg-accent/7 p-4 rounded-xl">
+          <h3 class="font-bold text-heading4 mb-3 border-b border-accent/10 pb-2">
             Technical
           </h3>
           <div class="flex flex-wrap gap-3 text-sm">
@@ -314,8 +306,8 @@ const description = 'Professional experience and skills of Michael Kinder.'
           </div>
         </div>
 
-        <div class="bg-foreground/5 p-4 rounded-xl border border-foreground/10">
-          <h3 class="font-bold text-heading4 mb-3 border-b border-foreground/10 pb-2">
+        <div class="bg-accent/7 p-4 rounded-xl">
+          <h3 class="font-bold text-heading4 mb-3 border-b border-accent/10 pb-2">
             General
           </h3>
           <div class="flex flex-wrap gap-3 text-sm">
