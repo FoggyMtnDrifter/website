@@ -173,6 +173,7 @@ export interface SiteConfig {
   socialCardAvatarImage: string
   tags: string[]
   pageSize: number
+  hireMe?: boolean
   trailingSlashes: boolean
   themes: ThemesConfig
   socialLinks: SocialLinks

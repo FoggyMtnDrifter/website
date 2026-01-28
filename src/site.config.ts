@@ -26,6 +26,8 @@ const config: SiteConfig = {
   // This value is used in the astro.config.mjs file and in the "Search" component to make sure pagefind links match this setting.
   // It is not recommended to change this, since most links existing in the site currently do not have trailing slashes.
   trailingSlashes: false,
+  // Whether to show the "Available for Hire" badge on the About page.
+  hireMe: true,
   // The navigation links to display in the header.
   navLinks: [
     {
