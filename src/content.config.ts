@@ -50,8 +50,17 @@ const addendumCollection = defineCollection({
     }),
 })
 
+const legalCollection = defineCollection({
+  loader: glob({ pattern: ['**/*.md', '**/*.mdx'], base: './src/content/legal' }),
+  schema: z.object({
+    title: z.string(),
+    updated: z.coerce.date(),
+  }),
+})
+
 export const collections = {
   posts: postsCollection,
   home: homeCollection,
   addendum: addendumCollection,
+  legal: legalCollection,
 }

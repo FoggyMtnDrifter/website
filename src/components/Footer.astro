@@ -9,22 +9,12 @@ import SocialLinks from '~/components/SocialLinks.astro'
   {siteConfig.socialLinks && <SocialLinks socialLinks={siteConfig.socialLinks} />}
   <div class="flex flex-col md:flex-row flex-wrap flex-1 items-center justify-center">
     <span class="my-1">
-      {siteConfig.author} © 2025
+      © 2025 {siteConfig.author}
     </span>
     <span class="mx-5 hidden md:block"> :: </span>
     <span class="my-1">
-      Powered by <a
-        class="underline"
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://astro.build">Astro</a
-      >
-      & <a
-        class="underline"
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://github.com/stelcodes/multiterm-astro">MultiTerm</a
-      >
+      <a class="underline" href="/legal/terms-of-use">Terms of Use</a>
+      <a class="underline" href="/legal/privacy-policy">Privacy Policy</a>
     </span>
   </div>
 </footer>
