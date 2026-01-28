@@ -277,6 +277,13 @@
     }
   })
 
+  // Check for deep link
+  if (window.location.hash === '#coffee') {
+    dialog.showModal()
+    // Optional: clear hash so it doesn't reopen on refresh?
+    // User didn't ask for that, keeping it simple.
+  }
+
   // Close modal
   const resetModal = () => {
     setTimeout(() => {
