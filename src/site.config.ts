@@ -40,11 +40,6 @@ const config: SiteConfig = {
       name: 'Blog',
       url: '/posts',
     },
-    {
-      name: 'GitHub',
-      url: 'https://github.com/FoggyMtnDrifter',
-      external: true,
-    },
   ],
   // The theming configuration for the site.
   themes: {
