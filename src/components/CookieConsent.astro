@@ -1,0 +1,73 @@
+---
+
+---
+
+<div
+  id="cookie-consent"
+  class="fixed bottom-4 left-4 z-50 hidden max-w-sm rounded-xl border border-accent/20 bg-background/95 p-4 shadow-lg backdrop-blur-sm transition-all duration-300"
+  role="alert"
+>
+  <div class="flex flex-col gap-3">
+    <p class="text-sm text-foreground/90">
+      We use essential cookies to ensure our website functions properly. By continuing to
+      use this site, you agree to our <a
+        href="/legal/privacy-policy"
+        class="text-accent hover:underline">Privacy Policy</a
+      >.
+    </p>
+    <button
+      id="dismiss-cookie-consent"
+      class="self-start rounded-lg bg-accent/10 px-3 py-1.5 text-xs font-medium text-accent hover:bg-accent/20 active:bg-accent/30 transition-colors"
+    >
+      Got it
+    </button>
+  </div>
+</div>
+
+<script>
+  // Function to set a cookie
+  function setCookie(name: string, value: string, days: number) {
+    let expires = ''
+    if (days) {
+      const date = new window.Date()
+      date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000)
+      expires = '; expires=' + date.toUTCString()
+    }
+    document.cookie = name + '=' + (value || '') + expires + '; path=/'
+  }
+
+  // Function to get a cookie
+  function getCookie(name: string) {
+    const nameEQ = name + '='
+    const ca = document.cookie.split(';')
+    for (let i = 0; i < ca.length; i++) {
+      let c = ca[i]
+      while (c.charAt(0) == ' ') c = c.substring(1, c.length)
+      if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length)
+    }
+    return null
+  }
+
+  const CONSENT_COOKIE_NAME = 'cookie-consent-dismissed'
+  const component = document.getElementById('cookie-consent')
+  const dismissButton = document.getElementById('dismiss-cookie-consent')
+
+  // Check if the consent cookie exists
+  if (!getCookie(CONSENT_COOKIE_NAME)) {
+    // Show the popup after a small delay for a smoother entrance
+    setTimeout(() => {
+      component?.classList.remove('hidden')
+    }, 500)
+  }
+
+  // Handle dismiss click
+  dismissButton?.addEventListener('click', () => {
+    // Set cookie for 365 days
+    setCookie(CONSENT_COOKIE_NAME, 'true', 365)
+    // Hide the popup
+    component?.classList.add('opacity-0', 'translate-y-4')
+    setTimeout(() => {
+      component?.classList.add('hidden')
+    }, 300)
+  })
+</script>

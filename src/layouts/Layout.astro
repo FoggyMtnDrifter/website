@@ -8,6 +8,7 @@ import siteConfig from '~/site.config'
 import { pick, resolveThemeColorStyles } from '~/utils'
 import crypto from 'crypto'
 import BuyMeACoffeeModal from '~/components/BuyMeACoffeeModal.astro'
+import CookieConsent from '~/components/CookieConsent.astro'
 
 interface Props {
   title?: string
@@ -166,5 +167,6 @@ let generatedCss: string = cssLines.join('\n')
       <Footer />
     </div>
     <BuyMeACoffeeModal />
+    <CookieConsent />
   </body>
 </html>
