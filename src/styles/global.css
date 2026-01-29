@@ -41,8 +41,8 @@
   --color-yellow: var(--theme-yellow);
   --color-magenta: var(--theme-magenta);
   --color-cyan: var(--theme-cyan);
-  --default-font-family: var(--theme-font), monospace;
-  --default-mono-font-family: var(--theme-font), monospace;
+  --default-font-family: var(--theme-font), sans-serif;
+  --default-mono-font-family: 'JetBrains Mono Variable', monospace;
 }
 
 header {
@@ -223,9 +223,7 @@ article img {
   h1 {
     @apply text-[1.75rem] text-heading1 mt-8;
 
-    &::before {
-      @apply mr-2 content-['#'];
-    }
+
 
     .heading-anchor svg {
       @apply size-5.5;
@@ -235,9 +233,7 @@ article img {
   h2 {
     @apply text-[1.6rem] text-heading2 mt-12;
 
-    &::before {
-      @apply mr-2 content-['##'];
-    }
+
 
     .heading-anchor svg {
       @apply size-5.5;
@@ -247,9 +243,7 @@ article img {
   h3 {
     @apply text-2xl text-heading3 mt-10;
 
-    &::before {
-      @apply mr-2 content-['###'];
-    }
+
 
     .heading-anchor svg {
       @apply size-5;
@@ -259,9 +253,7 @@ article img {
   h4 {
     @apply text-2xl text-heading4 mt-8;
 
-    &::before {
-      @apply mr-2 content-['####'];
-    }
+
 
     .heading-anchor svg {
       @apply size-5;
@@ -271,9 +263,7 @@ article img {
   h5 {
     @apply text-lg text-heading5;
 
-    &::before {
-      @apply mr-2 content-['#####'];
-    }
+
 
     .heading-anchor svg {
       @apply size-4.5;
@@ -283,9 +273,7 @@ article img {
   h6 {
     @apply text-lg text-heading6;
 
-    &::before {
-      @apply mr-2 content-['######'];
-    }
+
 
     .heading-anchor svg {
       @apply size-4.5;
