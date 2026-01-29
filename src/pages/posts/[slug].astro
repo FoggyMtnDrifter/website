@@ -141,13 +141,9 @@ if (postData.tags && postData.tags.length > 0) {
       </section>
     ) : null
   }
-  {
-    siteConfig.giscus && (
-      <section>
-        <DividerText text="Comments" />
-        <Comments slug={post.id} client:visible />
-      </section>
-    )
-  }
+  <section>
+    <DividerText text="Comments" />
+    <Comments slug={post.id} client:visible />
+  </section>
   <ScrollUpButton />
 </Layout>

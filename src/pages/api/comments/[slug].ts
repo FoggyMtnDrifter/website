@@ -12,58 +12,52 @@ const REPO = 'website'
 const getOctokit = (auth?: string) => new Octokit({ auth: auth || GITHUB_TOKEN })
 
 export const GET: APIRoute = async ({ params, request }) => {
-    if (!siteConfig.giscus) {
-        return new Response(JSON.stringify({ error: 'Giscus not configured' }), { status: 500 })
+    if (!siteConfig.comments) {
+        return new Response(JSON.stringify({ error: 'Comments not configured' }), { status: 500 })
     }
 
     const { slug } = params
     // Mapping is pathname. With the slug, we construct the pathname.
     // Assuming slugs align with pathnames. E.g. posts/slug -> /posts/slug OR just The Title?
-    // Giscus "pathname" mapping usually uses the pathname of the page.
+    // "pathname" mapping usually uses the pathname of the page.
     // The user's pages are at /posts/[slug]. So search term is likely `/posts/${slug}` or just `/${slug}`?
     // Let's assume `/posts/${slug}` based on typical structure.
     // Wait, the slug param might capture the whole path if it was [...slug], but it's [slug].
     // Let's verify the logic in `src/pages/posts/[slug].astro`.
-    // The giscus loader uses `pathname`.
+    // The comments loader uses `pathname`.
 
     const term = `/posts/${slug}`
 
     const query = `
-    query($term: String!) {
-      search(type: DISCUSSION, query: $term, first: 1) {
-        nodes {
-          ... on Discussion {
-            id
-            url
-            comments(first: 50) {
-              nodes {
-                id
-                body
-                bodyHTML
-                createdAt
-                author {
-                  login
-                  avatarUrl
-                  url
-                }
-                replies(first: 10) {
-                  nodes {
-                    id
-                    body
-                    bodyHTML
-                    createdAt
-                    author {
-                      login
-                      avatarUrl
-                      url
-                    }
+      query($term: String!) {
+        search(type: DISCUSSION, query: $term, first: 1) {
+          nodes {
+            ... on Discussion {
+              id
+              title
+              number
+              comments(first: 100) {
+                nodes {
+                  id
+                  body
+                  bodyHTML
+                  createdAt
+                  author {
+                    login
+                    avatarUrl
+                    url
                   }
-                }
-                reactions(first: 10) {
-                  nodes {
-                    content
-                    user {
-                      login
+                  replies(first: 20) {
+                    nodes {
+                      id
+                      body
+                      bodyHTML
+                      createdAt
+                      author {
+                        login
+                        avatarUrl
+                        url
+                      }
                     }
                   }
                 }
@@ -72,21 +66,17 @@ export const GET: APIRoute = async ({ params, request }) => {
           }
         }
       }
-    }
-  `
-
-    // We need a precise search query for 'search'. 
-    // "repo:owner/repo term in:title" etc.
-    // However, Giscus often puts the term in title.
-    const searchQuery = `repo:${siteConfig.giscus.repo} in:title ${term}`
+    `
 
     try {
         const octokit = getOctokit()
+        const searchQuery = `repo:${siteConfig.comments.repo} in:title ${term}`
+
         const result: any = await octokit.graphql(query, {
             term: searchQuery
         })
 
-        const discussion = result.search.nodes[0]
+        const discussion = result.search?.nodes?.[0]
 
         if (discussion && discussion.comments) {
             const transformComment = (comment: any) => {
@@ -97,12 +87,15 @@ export const GET: APIRoute = async ({ params, request }) => {
                     comment.author.url = '' // Guest has no profile
                     // Use DiceBear for guest avatar
                     comment.author.avatarUrl = `https://api.dicebear.com/9.x/initials/svg?seed=${encodeURIComponent(displayName)}`
+                }
 
-                    // The HTML is: <p dir="auto"><em>(Posted by Name)</em></p>
-                    // parsing HTML with regex is fragile but for this specific pattern it's consistent from GitHub
-                    // We accept optional whitespace and attributes on the p tag.
+                // The HTML is: <p dir="auto"><em>(Posted by Name)</em></p>
+                // parsing HTML with regex is fragile but for this specific pattern it's consistent from GitHub
+                // We accept optional whitespace and attributes on the p tag.
+                if (comment.bodyHTML) {
                     comment.bodyHTML = comment.bodyHTML.replace(/<p[^>]*>\s*<em>\(Posted by .*?\)<\/em>\s*<\/p>\s*$/, '')
                 }
+
                 if (comment.replies && comment.replies.nodes) {
                     comment.replies.nodes.forEach(transformComment)
                     // Sort replies: Newest first
@@ -111,7 +104,7 @@ export const GET: APIRoute = async ({ params, request }) => {
             }
 
             discussion.comments.nodes.forEach(transformComment)
-            // Sort comments: Newest first (reverse the GitHub order which is usually oldest first for comments)
+            // Sort comments: Newest first
             discussion.comments.nodes.reverse()
         }
 
@@ -193,7 +186,7 @@ export const POST: APIRoute = async ({ params, request, cookies }) => {
             const botOctokit = getOctokit(GITHUB_TOKEN)
 
             // 1. Find
-            const searchQuery = `repo:${siteConfig.giscus!.repo} in:title ${term}`
+            const searchQuery = `repo:${siteConfig.comments!.repo} in:title ${term}`
             const findQuery = `
             query($term: String!) {
                 search(type: DISCUSSION, query: $term, first: 1) {
@@ -208,7 +201,7 @@ export const POST: APIRoute = async ({ params, request, cookies }) => {
                 finalDiscussionId = found.id
             } else {
                 // 2. Create
-                if (!siteConfig.giscus?.repoId || !siteConfig.giscus?.categoryId) {
+                if (!siteConfig.comments?.repoId || !siteConfig.comments?.categoryId) {
                     return new Response('Missing repoId or categoryId configuration', { status: 500 })
                 }
 
@@ -224,10 +217,10 @@ export const POST: APIRoute = async ({ params, request, cookies }) => {
                     }
                 }
             `
-                // Giscus usually creates it with a specific body. We can just say "Comments for..."
+                // GitHub Discussions usually creates it with a specific body.
                 const createResult: any = await botOctokit.graphql(createQuery, {
-                    repositoryId: siteConfig.giscus.repoId,
-                    categoryId: siteConfig.giscus.categoryId,
+                    repositoryId: siteConfig.comments.repoId,
+                    categoryId: siteConfig.comments.categoryId,
                     title: term,
                     body: `Comments for ${term}\n\n[View Post](${new URL(term, siteConfig.site)})`
                 })

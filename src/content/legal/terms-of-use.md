@@ -13,7 +13,7 @@ This is a personal blog. I write code, I write opinions, and sometimes I write b
 
 ## 2. Comments (Be Nice)
 
-Comments are hosted via **giscus** (GitHub Discussions).
+Comments are hosted via **GitHub Discussions**.
 -   **Don't be a jerk.** No hate speech, harassment, or spam.
 -   **I have the ban hammer.** I reserve the right to hide or delete comments that violate common decency (or just really annoy me).
 -   **Your words are yours.** You own your comments, but by posting them here, you let me display them.

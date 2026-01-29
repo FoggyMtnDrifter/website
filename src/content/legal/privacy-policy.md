@@ -16,9 +16,8 @@ I use **Rybbit** for analytics. Ideally, I'd like to know if anyone is actually 
 
 ## 2. The "Yelling at Me" Part (Comments)
 
-Comments are powered by **giscus**, which piggybacks off GitHub Discussions.
--   To leave a comment, you have to log in with GitHub.
--   This means I don't store your comments in a database; GitHub does.
+I use GitHub Discussions to power my comments section. When you post a comment, you are interacting directly with the GitHub API. Please refer to GitHub's Privacy Policy for more information on how they handle your data. This means I don't store your comments in a database; GitHub does.
+
 -   If you want to know what GitHub does with your data, you'll have to read [their privacy policy](https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement). I assume it involves storing your comment.
 
 ## 3. The "Free Coffee" Part (Donations)

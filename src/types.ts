@@ -94,15 +94,6 @@ export const themeKeys = [
   'important',
   'caution',
   'warning',
-  // For Giscus syntax highlighting only
-  'comment',
-  'constant',
-  'entity',
-  'tag',
-  'keyword',
-  'string',
-  'variable',
-  'regexp',
   // Terminal colors for user customization only, not used by default
   'blue',
   'green',
@@ -156,14 +147,6 @@ export type SocialLinks = {
   rss?: boolean
 }
 
-export type GiscusConfig = {
-  repo: string
-  repoId: string
-  category: string
-  categoryId: string
-  reactionsEnabled: boolean
-}
-
 export interface SiteConfig {
   site: string
   font: string
@@ -178,6 +161,13 @@ export interface SiteConfig {
   themes: ThemesConfig
   socialLinks: SocialLinks
   navLinks: NavLink[]
-  giscus: GiscusConfig | undefined,
+  comments: CommentsConfig
   characters: Record<string, string>
+}
+
+export type CommentsConfig = {
+  repo: string
+  repoId: string
+  category: string
+  categoryId: string
 }
