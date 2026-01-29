@@ -8,7 +8,7 @@ import { getCollection, render, type CollectionEntry } from 'astro:content'
 import PostAddendum from '~/components/PostAddendum.astro'
 import TableOfContents from '~/components/TableOfContents.astro'
 import { Image } from 'astro:assets'
-import GiscusLoader from '~/components/GiscusLoader.astro'
+import Comments from '~/components/Comments.svelte'
 import siteConfig from '~/site.config'
 import Tags from '~/components/Tags.astro'
 import PostInfo from '~/components/PostInfo.astro'
@@ -145,7 +145,7 @@ if (postData.tags && postData.tags.length > 0) {
     siteConfig.giscus && (
       <section>
         <DividerText text="Comments" />
-        <GiscusLoader />
+        <Comments slug={post.id} client:visible />
       </section>
     )
   }
