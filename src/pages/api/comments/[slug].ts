@@ -229,13 +229,13 @@ export const POST: APIRoute = async ({ params, request, cookies }) => {
             }
         }
 
-        // Now Post Comment
         const createCommentQuery = `
       mutation($discussionId: ID!, $body: String!) {
         addDiscussionComment(input: {discussionId: $discussionId, body: $body}) {
           comment {
             id
             body
+            bodyHTML
             createdAt
             author {
               login
@@ -259,9 +259,11 @@ export const POST: APIRoute = async ({ params, request, cookies }) => {
         if (!userToken && displayName) {
             newComment.author.login = displayName
             newComment.author.url = ''
-            // We can strip from body too if we want, but usually bodyHTML is what's displayed
-            // bodyHTML might take a moment to generate or might be returned
-            // Depending on API response, bodyHTML might be present.
+            newComment.author.avatarUrl = `https://api.dicebear.com/9.x/initials/svg?seed=${encodeURIComponent(displayName)}`
+            // Strip the attribution from bodyHTML if present
+            if (newComment.bodyHTML) {
+                newComment.bodyHTML = newComment.bodyHTML.replace(/<p[^>]*>\s*<em>\(Posted by .*?\)<\/em>\s*<\/p>\s*$/, '')
+            }
         }
 
         return new Response(JSON.stringify(newComment), {
