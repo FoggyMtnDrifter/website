@@ -160,7 +160,7 @@ const config: SiteConfig = {
   comments: {
     repo: 'FoggyMtnDrifter/website',
     repoId: 'R_kgDORBPuRw',
-    category: 'General',
+    category: 'Comments',
     categoryId: 'DIC_kwDORBPuR84C1bYd',
   },
 
