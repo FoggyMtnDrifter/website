@@ -8,7 +8,7 @@ import SelectThemeLoader from '~/components/SelectThemeLoader.astro'
 import siteConfig from '~/site.config'
 import { pick, resolveThemeColorStyles } from '~/utils'
 import crypto from 'crypto'
-import BuyMeACoffeeModal from '~/components/BuyMeACoffeeModal.astro'
+import BuyMeACoffeeModal from '~/components/BuyMeACoffeeModal.svelte'
 import CookieConsent from '~/components/CookieConsent.astro'
 
 interface Props {
@@ -167,7 +167,7 @@ let generatedCss: string = cssLines.join('\n')
       </main>
       <Footer />
     </div>
-    <BuyMeACoffeeModal />
+    <BuyMeACoffeeModal client:only="svelte" />
     <CookieConsent />
   </body>
 </html>
