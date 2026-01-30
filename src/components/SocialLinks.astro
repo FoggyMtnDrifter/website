@@ -15,17 +15,18 @@ interface Props {
 const { socialLinks } = Astro.props
 ---
 
-<div class="flex w-full max-w-md items-center justify-between">
+<div class="flex flex-wrap gap-2 items-center justify-center">
   {
     socialLinks.github && (
       <a
         href={socialLinks.github}
         target="_blank"
         rel="noopener noreferrer"
-        class="social-link"
+        class="group p-2 rounded-xl hover:bg-foreground/5 transition-all duration-300 hover:scale-110"
+        aria-label="GitHub"
       >
         <span class="sr-only">GitHub</span>
-        <IconGithub class="size-7" />
+        <IconGithub class="size-6 text-foreground/75 group-hover:text-accent transition-colors" />
       </a>
     )
   }
@@ -35,36 +36,11 @@ const { socialLinks } = Astro.props
         href={socialLinks.mastodon}
         target="_blank"
         rel="noopener noreferrer"
-        class="social-link"
+        class="group p-2 rounded-xl hover:bg-foreground/5 transition-all duration-300 hover:scale-110"
+        aria-label="Mastodon"
       >
         <span class="sr-only">Mastodon</span>
-        <IconMastodon class="size-7" />
-      </a>
-    )
-  }
-  {
-    socialLinks.twitter && (
-      <a
-        href={socialLinks.twitter}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="social-link"
-      >
-        <span class="sr-only">Twitter</span>
-        <IconTwitter class="size-7" />
-      </a>
-    )
-  }
-  {
-    socialLinks.linkedin && (
-      <a
-        href={socialLinks.linkedin}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="social-link"
-      >
-        <span class="sr-only">LinkedIn</span>
-        <IconLinkedin class="size-7" />
+        <IconMastodon class="size-6 text-foreground/75 group-hover:text-accent transition-colors" />
       </a>
     )
   }
@@ -74,10 +50,39 @@ const { socialLinks } = Astro.props
         href={socialLinks.bluesky}
         target="_blank"
         rel="noopener noreferrer"
-        class="social-link"
+        class="group p-2 rounded-xl hover:bg-foreground/5 transition-all duration-300 hover:scale-110"
+        aria-label="Bluesky"
       >
         <span class="sr-only">Bluesky</span>
-        <IconBluesky class="size-7" />
+        <IconBluesky class="size-6 text-foreground/75 group-hover:text-accent transition-colors" />
+      </a>
+    )
+  }
+  {
+    socialLinks.twitter && (
+      <a
+        href={socialLinks.twitter}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="group p-2 rounded-xl hover:bg-foreground/5 transition-all duration-300 hover:scale-110"
+        aria-label="Twitter"
+      >
+        <span class="sr-only">Twitter</span>
+        <IconTwitter class="size-6 text-foreground/75 group-hover:text-accent transition-colors" />
+      </a>
+    )
+  }
+  {
+    socialLinks.linkedin && (
+      <a
+        href={socialLinks.linkedin}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="group p-2 rounded-xl hover:bg-foreground/5 transition-all duration-300 hover:scale-110"
+        aria-label="LinkedIn"
+      >
+        <span class="sr-only">LinkedIn</span>
+        <IconLinkedin class="size-6 text-foreground/75 group-hover:text-accent transition-colors" />
       </a>
     )
   }
@@ -87,18 +92,23 @@ const { socialLinks } = Astro.props
         href={`mailto:${socialLinks.email}`}
         target="_blank"
         rel="noopener noreferrer"
-        class="social-link"
+        class="group p-2 rounded-xl hover:bg-foreground/5 transition-all duration-300 hover:scale-110"
+        aria-label="Email"
       >
         <span class="sr-only">Email</span>
-        <IconEmail class="size-7" />
+        <IconEmail class="size-6 text-foreground/75 group-hover:text-accent transition-colors" />
       </a>
     )
   }
   {
     socialLinks.rss && (
-      <a href="/rss.xml" class="social-link">
+      <a
+        href="/rss.xml"
+        class="group p-2 rounded-xl hover:bg-foreground/5 transition-all duration-300 hover:scale-110"
+        aria-label="RSS Feed"
+      >
         <span class="sr-only">RSS</span>
-        <IconRss class="size-7" />
+        <IconRss class="size-6 text-foreground/75 group-hover:text-accent transition-colors" />
       </a>
     )
   }
