@@ -1,6 +1,6 @@
 ---
 title: Privacy Policy
-updated: 2026-01-28
+updated: 2026-01-30
 ---
 
 # Privacy Policy
@@ -9,8 +9,8 @@ Look, I'm a normie, not a data broker. I built this site to share stuff, not to 
 
 ## 1. The "Who Are You?" Part (Analytics)
 
-I use **Rybbit** for analytics. Ideally, I'd like to know if anyone is actually reading my blog posts or if I'm just shouting into the void.
--   **No Cookies:** Rybbit doesn't use cookies to track you.
+I use **Umami** for analytics. Ideally, I'd like to know if anyone is actually reading my blog posts or if I'm just shouting into the void.
+-   **No Cookies:** Umami doesn't use cookies to track you.
 -   **No Personal Data:** It doesn't collect your IP address or fingerprint your device.
 -   **Just Numbers:** It just tells me "Hey, someone visited from the internet." That's it.
 
