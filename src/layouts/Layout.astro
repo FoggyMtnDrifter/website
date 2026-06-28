@@ -10,6 +10,7 @@ import { pick, resolveThemeColorStyles } from '~/utils'
 import crypto from 'crypto'
 import BuyMeACoffeeModal from '~/components/BuyMeACoffeeModal.svelte'
 import CookieConsent from '~/components/CookieConsent.astro'
+import NowPlaying from '~/components/NowPlaying.svelte'
 
 interface Props {
   title?: string
@@ -161,6 +162,13 @@ let generatedCss: string = cssLines.join('\n')
       defer
       src="https://analytics.foggymtndrifter.com/script.js"
       data-website-id="c2e776cd-5a10-41d0-a5ef-cefc8f3d8499"></script>
+    <script is:inline>
+      window.LibredeskSettings = {
+        baseURL: 'https://help.foggymtndrifter.com',
+        inboxID: '16482aab-9674-44f6-a9d9-49c9d71a3fd9'
+      };
+    </script>
+    <script async src="https://help.foggymtndrifter.com/widget.js"></script>
   </head>
   <body class="w-full h-full m-0 bg-background text-foreground">
     <div
@@ -174,5 +182,6 @@ let generatedCss: string = cssLines.join('\n')
     </div>
     <BuyMeACoffeeModal client:only="svelte" />
     <CookieConsent />
+    <NowPlaying client:only="svelte" />
   </body>
 </html>
