@@ -10,7 +10,7 @@ import { pick, resolveThemeColorStyles } from '~/utils'
 import crypto from 'crypto'
 import BuyMeACoffeeModal from '~/components/BuyMeACoffeeModal.svelte'
 import CookieConsent from '~/components/CookieConsent.astro'
-import NowPlaying from '~/components/NowPlaying.svelte'
+
 
 interface Props {
   title?: string
@@ -182,6 +182,5 @@ let generatedCss: string = cssLines.join('\n')
     </div>
     <BuyMeACoffeeModal client:only="svelte" />
     <CookieConsent />
-    <NowPlaying client:only="svelte" />
   </body>
 </html>
