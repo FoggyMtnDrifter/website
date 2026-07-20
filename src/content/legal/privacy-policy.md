@@ -45,4 +45,4 @@ I might update this page if I add new features. I'll change the date below if I 
 
 ## 7. Contact
 
-If you have questions, [email me](mailto:michael@foggymtndrifter.com) or send a carrier pigeon.
+If you have questions, [email me](mailto:hello@foggymtndrifter.com) or send a carrier pigeon.

@@ -1,7 +1,7 @@
 ---
 avatarImage:
   src: './avatar.jpeg'
-  alt: 'Michael Kinder'
+  alt: 'FoggyMtnDrifter'
 githubCalendar: 'foggymtndrifter'
 ---
 

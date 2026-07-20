@@ -7,11 +7,11 @@ const config: SiteConfig = {
   title: 'FoggyMtnDrifter',
   // The description of your site, used for SEO and RSS feed.
   description:
-    "Michael Kinder's personal site.",
+    "FoggyMtnDrifter's personal site.",
   // The author of the site, used in the footer, SEO, and RSS feed.
-  author: 'Michael Kinder',
+  author: 'FoggyMtnDrifter',
   // Keywords for SEO, used in the meta tags.
-  tags: ['Michael Kinder', 'FoggyMtnDrifter', 'Astro'],
+  tags: ['FoggyMtnDrifter', 'Astro'],
   // Path to the image used for generating social media previews.
   // Needs to be a square JPEG file due to limitations of the social card generator.
   // Try https://squoosh.app/ to easily convert images to JPEG.
@@ -33,10 +33,6 @@ const config: SiteConfig = {
     {
       name: 'Home',
       url: '/',
-    },
-    {
-      name: 'About',
-      url: '/about',
     },
     {
       name: 'Blog',
@@ -150,8 +146,7 @@ const config: SiteConfig = {
   socialLinks: {
     github: 'https://github.com/FoggyMtnDrifter',
     // mastodon: 'https://github.com/stelcodes/multiterm-astro',
-    email: 'mailto:michael@foggymtndrifter.com',
-    linkedin: 'https://linkedin.com/in/foggymtndrifter',
+    email: 'mailto:hello@foggymtndrifter.com',
     bluesky: 'https://bsky.app/profile/foggymtndrifter.com',
     // twitter: 'https://github.com/stelcodes/multiterm-astro',
     rss: true, // Set to true to include an RSS feed link in the footer

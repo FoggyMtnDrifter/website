@@ -1,6 +1,6 @@
 # foggymtndrifter.com
 
-Michael Kinder's personal website and blog.
+FoggyMtnDrifter's personal website and blog.
 
 This site features a quirky, developer-focused aesthetic with deep customization, local content management, and integrated features for reader interaction.
 
